@@ -1,4 +1,8 @@
-with open('pcdata','r') as f:
-	myvar = 7
+import yaml
 
-print(myvar)
+with open('save.yaml', 'r') as f:
+
+	mydict = yaml.load(f)
+
+
+print(mydict['k2'])
