@@ -73,10 +73,11 @@ def get_info():
 
             pc_data.write(data + '\n')  # store the data
 
-    print('***PLAYER IS: ', player)
-    
-    return {'player_name': player, 'pc_name': pc, 'maximum_hp':maxhp, 
-            'current_hp': currhp, 'file': pc_data_file_name}
+    return {'player_name': player, 
+            'pc_name': pc, 
+            'maximum_hp':maxhp, 
+            'current_hp': currhp, 
+            'file': pc_data_file_name}
 
 
 def combat(pdata):
