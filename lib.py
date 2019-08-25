@@ -2,6 +2,8 @@
 #!/usr/bin/env python
 
 """
+*** THIS IS THE OLD VERSION OF MY HITPOINT TRACKER FUNCTIONS***
+
 track hp through combat
 
 don't let HP go above max
