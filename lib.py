@@ -25,6 +25,28 @@ saving/reading player character (pc) data:
         frank:zoltan the magnificent:100:75
 """
 
+import os
+
+def gen_char_file_name(player_name, character_name, character_data_directory=None):
+    """
+        return the file name used to hold character data from 
+
+        returns a relative path of the form:
+
+            <character_data_directory>/<player_name>.<character_name>
+    """
+
+    file_name = player_name + '.' + character_name
+
+    if character_data_directory:
+
+        file_name = os.path.join(character_data_directory, file_name)
+
+
+    return file_name
+
+
+
 def get_info():
     """
     get basic player data, then attempt to read HP data from file 
@@ -41,8 +63,8 @@ def get_info():
     """
 
     player = input('What is your name (player): ')
-    pc = input('What is your character\'s name: ')
-    pc_data_file_name = '.'.join([player, pc])
+    pc = input('What is your character\'s name: ')  # todo change pc to character or similar - player and pc might be confused for one another
+    pc_data_file_name = gen_char_file_name(player, pc, 'chars')  # todo make chars dir a param
 
     try:
 
@@ -75,11 +97,14 @@ def get_info():
 
             pc_data.write(data + '\n')  # store the data
 
-    return {'player_name': player, 
-            'pc_name': pc, 
-            'maximum_hp':maxhp, 
-            'current_hp': currhp, 
-            'file': pc_data_file_name}
+
+    char_data = {'player_name': player, 
+                 'pc_name': pc, 
+                 'maximum_hp':maxhp, 
+                 'current_hp': currhp, 
+                 'file': pc_data_file_name}
+
+    return char_data
 
 
 def combat(pdata):
@@ -151,5 +176,3 @@ def post_combat(pdata):
         data = ':'.join([player, pc, str(maxhp), str(currhp)])  # prep data for storage
 
         pc_data.write(data + '\n')  # store the data
-
-
